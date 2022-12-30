@@ -1,11 +1,12 @@
-import { AppError } from '@shared/errors/AppError'
 import { Router } from 'express'
+import { rolesRoute } from '@roles/http/routes/roles.routes'
 
 const routes = Router()
 
 routes.get('/', (request, response) => {
-  throw new AppError('Acesso negado', 401)
   return response.json({ message: 'Olá devs' })
 })
+
+routes.use('/roles', rolesRoute)
 
 export { routes }
