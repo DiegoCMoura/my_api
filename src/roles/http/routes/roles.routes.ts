@@ -7,14 +7,14 @@ import { ShowRoleController } from '@roles/useCases/showRole/ShowRoleController'
 import { UpdateRoleController } from '@roles/useCases/updateRole/UpdateRoleController'
 import { DeleteRoleController } from '@roles/useCases/deleteRole/DeleteRoleController'
 
-const rolesRoute = Router()
+const rolesRouter = Router()
 const createRolesController = container.resolve(CreateRoleController)
 const listRolesController = container.resolve(ListRolesController)
 const showRolesController = container.resolve(ShowRoleController)
 const updateRolesController = container.resolve(UpdateRoleController)
 const deleteRolesController = container.resolve(DeleteRoleController)
 
-rolesRoute.post(
+rolesRouter.post(
   '/',
   celebrate({
     [Segments.BODY]: Joi.object().keys({
@@ -26,7 +26,7 @@ rolesRoute.post(
   },
 )
 
-rolesRoute.get(
+rolesRouter.get(
   '/',
   celebrate({
     [Segments.QUERY]: Joi.object().keys({
@@ -39,7 +39,7 @@ rolesRoute.get(
   },
 )
 
-rolesRoute.get(
+rolesRouter.get(
   '/:id',
   celebrate({
     [Segments.PARAMS]: Joi.object().keys({
@@ -51,7 +51,7 @@ rolesRoute.get(
   },
 )
 
-rolesRoute.put(
+rolesRouter.put(
   '/:id',
   celebrate({
     [Segments.PARAMS]: Joi.object().keys({
@@ -66,7 +66,7 @@ rolesRoute.put(
   },
 )
 
-rolesRoute.delete(
+rolesRouter.delete(
   '/:id',
   celebrate({
     [Segments.PARAMS]: Joi.object().keys({
@@ -78,4 +78,4 @@ rolesRoute.delete(
   },
 )
 
-export { rolesRoute }
+export { rolesRouter }
