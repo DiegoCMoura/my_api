@@ -6,14 +6,14 @@ import { UpdateProfileUseCase } from './UpdateProfileUseCase'
 export class UpdateProfileController {
   async handle(request: Request, response: Response): Promise<Response> {
     const updateProfileUsecase = container.resolve(UpdateProfileUseCase)
-    const { name, email, password, isAdmin, roleId } = request.body
+    const { name, email, password, old_password } = request.body
     const user = await updateProfileUsecase.execute({
+      userId: request.user.id,
       name,
       email,
       password,
-      isAdmin,
-      roleId,
+      old_password,
     })
-    return response.status(201).json(instanceToInstance(user))
+    return response.json(instanceToInstance(user))
   }
 }
